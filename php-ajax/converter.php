@@ -6,8 +6,9 @@
  * Time: 10:38
  * To change this template use File | Settings | File Templates.
  */
-//TODO converts the csv to a json file, not really needed in the basic package
-date_default_timezone_set('Europe/Brussels');
+//This is an old file but still left here for people who need it,
+// I used it to convert my csv file to an valid JSON file.
+/*date_default_timezone_set('Europe/Brussels');
 $file = fopen("../data/light.csv", "r+w") or exit("Unable to open file");
 $i = 0;
 while(!feof($file))
@@ -25,5 +26,5 @@ $new_file = fopen("../data/example.json", "w+");
 fwrite($new_file, $json_encoded);
 
 fclose($new_file);
-echo "<h1>All done!</h1>";
+echo "<h1>All done!</h1>";    */
 
