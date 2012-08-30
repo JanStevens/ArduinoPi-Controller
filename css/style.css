@@ -1,0 +1,140 @@
+
+/* ===== Primary Styles ========================================================
+   Author: Fritz
+   ========================================================================== */
+footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #a2a2a2;
+    text-align: center;
+    height: 30px;
+    padding: 3px 0 3px 0;
+    z-index: 1030;
+    font-size:0.95em;
+    text-shadow: 0 1px 0 white;
+    line-height:33px;
+    background-color: #FAFAFA;
+    background-image: -moz-linear-gradient(top,#F2F2F2,#FFF);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#F2F2F2),to(#FFF));
+    background-image: -webkit-linear-gradient(top,#F2F2F2,#FFF);
+    background-image: -o-linear-gradient(top,#F2F2F2,#FFF);
+    background-image: linear-gradient(to bottom,#F2F2F2,#FFF);
+    background-repeat: repeat-x;
+    border: 1px solid #D4D4D4;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fff2f2f2',endColorstr='#ffffffff',GradientType=0);
+    -webkit-box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.065);
+    -moz-box-shadow: 0 -1px 4px rgba(0,0,0,0.065);
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.065);
+}
+
+#red .ui-slider-range,#red .ui-slider-handle{
+    background: #BD362F;
+}
+#green .ui-slider-range,#green .ui-slider-handle{
+    background: #51A351;
+}
+#blue .ui-slider-range,#blue .ui-slider-handle{
+    background: #04C;
+}
+.center {
+    margin: auto 0;
+}
+#swatch{
+    width: 180px;
+    height: 180px;
+    background-image:none;
+    float:right;
+    margin:6px 20px 0 0;
+    border:none;
+    background-color:black;
+}
+#swatch:hover, #swatch:focus {
+    cursor: pointer;
+    border-color: #FFF41A;
+    -webkit-box-shadow: 0 0 16px #FFF41A;
+    -moz-box-shadow: 0 0 16px #FFF41A;
+    box-shadow: 0 0 16px #FFF41A;
+
+}
+#sliders{
+    width:500px;
+}
+#colorpicker{
+    float:left;
+    margin:0 0 0 20px;
+}
+#red,#green,#blue{
+    margin:10px 0 0 0;
+}
+#innerswatch{
+    font:bold 24px arial;
+    margin:75px 0 0 0;
+    text-align:center;
+    color:white;
+}
+
+.tooltip {
+    display: block;
+    opacity: 0.8;
+    filter: alpha(opacity = 80);
+    visibility: visible;
+    max-width: 200px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000000;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+section {
+    padding-top: 30px;
+}
+
+
+
+/*.graph-legend {
+    margin-left: 0.564%;
+    list-style: none;
+}
+.graph-legend li {
+
+    line-height: 12px;
+    margin-bottom: -4px;
+}
+.graph-legend div {
+    float: left;
+    margin-right: 2%;
+    margin-top: 2px;
+}
+.graph-legend div div {
+    margin-top: 0;
+}
+
+.graph-legend input {
+    float: left;
+    margin-right: 2%;
+}
+.graph-legend label {
+    font-size: 10px;
+}
+
+.graph-select {
+    line-height: 13px;
+    font-size: 12px;
+    margin-left: 0;
+}
+.graph-select li {
+    width: 31%;
+    padding-right: 2%;
+    text-align:center;
+}
+.graph-select a {
+    padding-left: 8px;
+}   */
