@@ -13,7 +13,7 @@ I also want to thank the following authors/scripts/plugins for making my coding 
 Warning: Before checking out the repo, please make sure you have a basic understanding of HTML, CSS, PHP and jQuery (and C++)
 
 ##More Information & Options
-Check my blog for more information how to use the API: [blog](http://www.fritz-hut.com/all-projects/arduinopi/)
+Check my blog for more information how to use the API: [blog](http://www.fritz-hut.com/all-projects/arduinopi/)       
 More information on how to connect the Raspberry Pi with the Arduino and how everything works can be found on my blog:
 [fritz-hut](http://fritz-hut.com).         
 Code is free for all to be used, copied, changed, edited and deleted. I only ask a simpel link to my blog if you use my code :)
