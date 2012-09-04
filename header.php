@@ -1,14 +1,18 @@
 <!doctype html>
 <html lang="en">
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title></title>
+    <title>The ArduinoPi 1.0</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -16,19 +20,21 @@
     <style type="text/css">
             /* Bootstrap fixes  */
         body {
-            padding:60px 0;
+            padding: 60px 0;
         }
     </style>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="css/farbtastic.css" type="text/css" />
-    <link rel="stylesheet" href="css/jquery-ui-1.8.23.custom.css" type="text/css" />
+    <link rel="stylesheet" href="css/farbtastic.css" type="text/css"/>
+    <link rel="stylesheet" href="css/jquery-ui-1.8.23.custom.css" type="text/css"/>
+    <link rel="stylesheet" href="css/prettify.css" type="text/css"/>
     <link rel="stylesheet" href="css/style.css">
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
     <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 
 </head>
-<body>
+<body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
@@ -37,14 +43,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="index.php">PHP - ArduinoPi Controller</a>
+            <a class="brand" href="index.php">ArduinoPi 1.0</a>
 
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li <?php if($active_tab == "home") echo "class='active'"; ?>><a href="index.php">Home</a></li>
-                    <li <?php if($active_tab == "hover") echo "class='active'"; ?>><a href="hover.php">Hover</a></li>
-                    <li <?php if($active_tab == "picker") echo "class='active'"; ?>><a href="picker.php">Color Picker</a></li>
-                    <li <?php if($active_tab == "sensor") echo "class='active'"; ?>><a href="sensor.php">Sensor</a></li>
+                    <li <?php if ($active_tab == "home") echo "class='active'"; ?>><a href="index.php">Home</a></li>
+                    <li <?php if ($active_tab == "basic") echo "class='active'"; ?>><a href="basic.php">Basic</a></li>
+                    <li <?php if ($active_tab == "hover") echo "class='active'"; ?>><a href="hover.php">Hover</a></li>
+                    <li <?php if ($active_tab == "picker") echo "class='active'"; ?>><a href="picker.php">Color
+                        Picker</a></li>
+                    <li <?php if ($active_tab == "sensor") echo "class='active'"; ?>><a href="sensor.php">Sensor</a>
+                    </li>
                 </ul>
             </div>
         </div>

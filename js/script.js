@@ -5,17 +5,22 @@
 
 (function ($) {
     $(document).ready(function () {
+        prettyPrint();
         /*
-        Hover Page
-        When a user hover a button on the hover page then it should trigger the right response
-        We add the port values in the value of the buttons and retrieve them with jQuery.
+         Hover Page
+         When a user hover a button on the hover page then it should trigger the right response
+         We add the port values in the value of the buttons and retrieve them with jQuery.
          */
         $(".hover-light > button").hover(function () {
             var port = $(this).val();
-            $.post("php-ajax/cmd.php?mode=hover", {port:port, value:255});
+            $.get("/api/pwm/" + port + "/" + 255, function (data) {
+                console.log(data);
+            });
         }, function () {
             var port = $(this).val();
-            $.post("php-ajax/cmd.php?mode=hover", {port:port, value:0});
+            $.post("/api/", {mode:"pwm", data:[port, 0]}, function (data) {
+                console.log(data);
+            });
         });
 
         /*
@@ -28,7 +33,9 @@
             var red = $("#red").slider("value");
             var green = $("#green").slider("value");
             var blue = $("#blue").slider("value");
-            $.post("php-ajax/cmd.php?mode=picker", {red:red, green:green, blue:blue});
+            $.post("/api/", {mode:"multiple-pwm", data:[2, blue, 3, green, 4, red, 5, blue, 6, green, 7, red, 8, blue, 9, green, 10, red]}, function (data) {
+                console.log(data);
+            });
 
         });
 
@@ -39,56 +46,62 @@
          holding smaller arrays with the right value for x and y.
          The time format is in UNIX time and multiplyed with 1000.
          */
-        $.getJSON('data/example.json', function (data) {
-            $.plot($("#graph-sensor"), [ {label:"Sensor 1", data:data} ], graph_options);
-        });
-
+        if ($("#graph-sensor").length !== 0) {
+            $.getJSON('data/example.json', function (data) {
+                $.plot($("#graph-sensor"), [
+                    {label:"Sensor 1", data:data}
+                ], graph_options);
+            });
+        }
         /*
-        This function will update the live graph, we preform a ajax call to the right data source and then update
-        the desired graph (placeholder). Note that both graphs use the same options 'graph_options'
+         This function will update the live graph, we preform a ajax call to the right data source and then update
+         the desired graph (placeholder). Note that both graphs use the same options 'graph_options'
          */
-        var updateLiveGraph = function () {
-            $.ajax({
-                type:"GET",
-                cache:false,
-                async:true,
-                url:'data/live-data.json',
-                dataType:'json',
-                success:function (data) {
-                    $.plot($("#graph-sensor-live"), [
-                        {label:"Sensor Live", data:data}
-                    ], graph_options);
+        if ($("#graph-sensor-live").length !== 0) {
+            var updateLiveGraph = function () {
+                $.ajax({
+                    type:"GET",
+                    cache:false,
+                    async:true,
+                    url:'data/live-data.json',
+                    dataType:'json',
+                    success:function (data) {
+                        $.plot($("#graph-sensor-live"), [
+                            {label:"Sensor Live", data:data}
+                        ], graph_options);
 
-                }
+                    }
+                });
+            };
+
+            // Call the function so the user can see the current graph without waiting
+            updateLiveGraph();
+
+            // Interval will execute the updateLiveGraph(); function every minute.
+            setInterval(function () {
+                updateLiveGraph()
+            }, 60000);
+
+            // We add an event handler so when a user clicks a button we execute the right ajax call and when the call
+            // is executed we call the graph so the new data gets loaded
+            $('#delete-log').click(function () {
+                $.post("/api/", {mode:"delete-file", data:["live-data"]}, function (data) {
+                    console.log(data);
+                    updateLiveGraph();
+                });
+
             });
-        };
 
-        // Call the function so the user can see the current graph without waiting
-        updateLiveGraph();
-
-        // Interval will execute the updateLiveGraph(); function every minute.
-        setInterval(function () {
-            updateLiveGraph()
-        }, 60000);
-
-        // We add an event handler so when a user clicks a button we execute the right ajax call and when the call
-        // is executed we call the graph so the new data gets loaded
-        $('#delete-log').click(function () {
-            $.post("php-ajax/cmd.php?mode=delete-log", function (data) {
-                updateLiveGraph();
+            // manually request for a sensor reading, since the time interval is one minute this might be a bit overkill.
+            $('#request-val').click(function () {
+                $.post("/api/", {mode:"analog-file", data:[0, "live-data"]}, function (data) {
+                    console.log(data);
+                    updateLiveGraph();
+                });
             });
-
-        });
-
-        // manually request for a sensor reading, since the time interval is one minute this might be a bit overkill.
-        $('#request-val').click(function () {
-            $.post("php-ajax/cmd.php?mode=request-val", {port:0}, function (data) {
-                updateLiveGraph();
-            });
-        });
-
+        }
         /* END =================================================================================================== END
-        WARNING THIS IS THE MORE ADVANCED CODE CHANGE ONLY IF YOU KNOW JQUERY!
+         WARNING THIS IS THE MORE ADVANCED CODE CHANGE ONLY IF YOU KNOW JQUERY!
          Other code for the color picker
          original code comes from: http://www.emanueleferonato.com/2011/03/22/jquery-color-picker-using-farbtastic-and-jquery-ui/
          */

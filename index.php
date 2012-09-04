@@ -4,12 +4,13 @@ include_once("header.php");
 ?>
 <div class="row-fluid">
     <section>
-        <div class="page-header"><h1>The ArduinoPi Controller</h1>
+        <div class="page-header"><h1>The ArduinoPi 1.0</h1>
 
-            <p>This is an example page of the Arduino Raspberry Pi Light Controller.<br/>
-                The setup we use are 3 RGB leds, using the serial connection and the UART of the Raspberry Pi, it is
-                possible to control
-                the Arduino from a web browser using PHP!</p>
+            <p>The ArduinoPi 1.0 is a PHP class with API support that allows for easy controll using PHP and
+                jQuery.<br/>
+                You can use a simple post or get request to switch ports on the Arduino. The basic page contains
+                all the basic information.<br/>Hover, Color Picker and Sensor are examples used with the basic commands.
+            </p>
 
             <p>
                 <button class="btn btn-primary" href="http://fritz-hut.com">Visit my blog to learn more</button>

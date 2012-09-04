@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^api/(.*)$ api/index.php?handler=$1 [QSA,L]
