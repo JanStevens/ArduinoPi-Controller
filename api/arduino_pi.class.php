@@ -36,7 +36,7 @@ class ArduinoPi extends phpSerial
         // Setup the serial connection, call the parent constructor
         try {
             parent::__construct();
-            $this->deviceSet("/dev/ttyAMA0");
+            $this->deviceSet("/dev/rfcomm0");
             $this->confBaudRate(115200);
             $this->confParity("none");
             $this->confCharacterLength(8);

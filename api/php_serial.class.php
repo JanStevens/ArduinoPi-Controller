@@ -19,7 +19,7 @@ define ("SERIAL_DEVICE_CLOSED", 3);
  * @thanks Jim Wright for OSX cleanup/fixes.
  * @copyright under GPL 2 licence
  *
- * Changed by Fritz to support ArduinoPi Error handeling and global mistakes corrected
+ * Changed by Fritz to support ArduinoPi Error handeling and mistakes corrected
  */
 class phpSerialException extends Exception
 {
@@ -33,6 +33,7 @@ class phpSerial
     var $_dState = SERIAL_DEVICE_NOTSET;
     var $_buffer = "";
     var $_os = "";
+    var $_bluetooth_pid = null;
 
     /**
      * This var says if buffer should be flushed by sendMessage (true) or manualy (false)
@@ -112,6 +113,17 @@ class phpSerial
                     $this->_device = $device;
                     $this->_dState = SERIAL_DEVICE_SET;
                     return true;
+                } elseif (preg_match("/^\/dev\/rfcomm[0-9]+$/", $device, $matches)) {
+                    // No connection is made with the bluetooth device, so create it.
+                    $this->_exec_bg("rfcomm connect $device");
+                    // Wait for the device to connect
+                    sleep(2.5);
+                    if ($this->_is_running($this->_bluetooth_pid)) {
+                        $this->_device = $device;
+                        $this->_dState = SERIAL_DEVICE_SET;
+                        return true;
+                    }
+                    throw new phpSerialException("Could not connect with Bluetooth Device");
                 }
             } elseif ($this->_os === "osx") {
                 if ($this->_exec("stty -f " . $device) === 0) {
@@ -154,7 +166,6 @@ class phpSerial
         if (!preg_match("@^[raw]\+?b?$@", $mode)) {
             throw new phpSerialException("Invalid opening mode : " . $mode . ". Use fopen() modes.");
         }
-
         $this->_dHandle = @fopen($this->_device, $mode);
 
         if ($this->_dHandle !== false) {
@@ -559,6 +570,21 @@ class phpSerial
 
         if (func_num_args() == 2) $out = array($ret, $err);
         return $retVal;
+    }
+
+    private function _exec_bg($cmd)
+    {
+        $retVal = proc_open("$cmd &> /dev/null 2> /dev/null &", array(), $pid);
+        $status = proc_get_status($retVal);
+        proc_close($retVal);
+        $this->_bluetooth_pid = $status["pid"] + 1;
+        return $retVal;
+    }
+
+    private function _is_running($pid)
+    {
+        exec("ps $pid", $state);
+        return (count($state) >= 2);
     }
 
     //

@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>The ArduinoPi 1.0</title>
+    <title>The ArduinoPi 1.5</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -43,7 +43,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="index.php">ArduinoPi 1.0</a>
+            <a class="brand" href="index.php">ArduinoPi 1.5</a>
 
             <div class="nav-collapse">
                 <ul class="nav">

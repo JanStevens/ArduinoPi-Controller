@@ -54,11 +54,11 @@ include_once("header.php");
     <div class="span12">
         <div class="page-header"><h1>Basic examples</h1>
 
-            <p>Calling commands using the ArduinoPi 1.0 is changed a lot so I will cover the eight default commands.
+            <p>
                 Every command can be called using ether GET or POST. I use jQuery to dynamically call the ArduinoPi API
                 when a
                 user clicks a button. For more information visit: <a
-                    href="http://fritz-hut.com">http://fritz-hut.com</a></p></div>
+                href="http://fritz-hut.com">http://fritz-hut.com</a></p></div>
         <div class="row-fluid">
             <div class="span9">
                 <section id="pwm">

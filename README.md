@@ -12,6 +12,9 @@ I also want to thank the following authors/scripts/plugins for making my coding 
 
 Warning: Before checking out the repo, please make sure you have a basic understanding of HTML, CSS, PHP and jQuery (and C++)
 
+# Update
+I've added Bluetooth support, for more information check out my blog at [http://fritz-hut.com](http://fritz-hut.com)
+
 ##More Information & Options
 Check my blog for more information how to use the API: [blog](http://www.fritz-hut.com/all-projects/arduinopi/)       
 More information on how to connect the Raspberry Pi with the Arduino and how everything works can be found on my blog:

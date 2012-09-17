@@ -4,12 +4,13 @@ include_once("header.php");
 ?>
 <div class="row-fluid">
     <section>
-        <div class="page-header"><h1>The ArduinoPi 1.0</h1>
+        <div class="page-header"><h1>The ArduinoPi 1.5</h1>
 
-            <p>The ArduinoPi 1.0 is a PHP class with API support that allows for easy controll using PHP and
+            <p>The ArduinoPi 1.5 is a PHP class with API support that allows for easy controll using PHP and
                 jQuery.<br/>
                 You can use a simple post or get request to switch ports on the Arduino. The basic page contains
-                all the basic information.<br/>Hover, Color Picker and Sensor are examples used with the basic commands.
+                all the basic information.<br/>Hover, Color Picker and Sensor are examples used with the basic commands.<br/>
+                It also supports Bluetooth devices for wireless transmission.
             </p>
 
             <p>
