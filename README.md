@@ -17,7 +17,8 @@ Warning: Before checking out the repo, please make sure you have a basic underst
 Analog ports are now called using 0-15 (for arduino mega), adding the A for analog will not work anymore and should be avoided
 Also changed some bugs in the Arduino Code.      
               
-###v1.5:From this version on, I've changed the way analog ports can be used as digital ports. If you want to use a analog port as
+###v1.5     
+From this version on, I've changed the way analog ports can be used as digital ports. If you want to use a analog port as
 a digital port then include the real value of the analog port. For example on my Arduino MEga 2560 I have 52 digital ports,
 port 53 is my A0 port and so on.
 
