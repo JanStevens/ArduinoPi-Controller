@@ -14,7 +14,7 @@ void loop()
 }
 
 void serialEvent1() {
-	while(Serial1.available() > 0 && Serial1.writeable()) {
+	while(Serial1.available() > 0) {
 		char inByte = (char)Serial1.read();
 		if(inByte == ':') {
 			cmdRec = true;

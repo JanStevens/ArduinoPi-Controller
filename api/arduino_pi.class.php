@@ -52,7 +52,7 @@ class ArduinoPi extends phpSerial
     }
 
     /**
-     * Sets the device name, right now only the Arduino Mega 2560 is supported
+     * Sets the device name
      * Analog pins also can be used as digital pins, pwm can also be digital pins
      *
      * @param int $name The name of the device
@@ -123,9 +123,6 @@ class ArduinoPi extends phpSerial
      */
     public function writeDigital($port, $value)
     {
-        if (is_string($port)) {
-            $port = $this->_transAnalogPin($port);
-        }
         if ($this->_isBetween($port, $this->_arduino["DIGITAL"])) {
             if ($value == HIGH || $value == LOW) {
                 $cmd = "@" . $port . "," . $value . ":";
@@ -138,6 +135,7 @@ class ArduinoPi extends phpSerial
         } else
             throw new Exception("writeDigital: Wrong port, check that you are writing to a digital port!");
     }
+
 
     /**
      * Write multiple ports at the same time (no serial transfer delay)
@@ -163,18 +161,6 @@ class ArduinoPi extends phpSerial
             $this->sendMessage($cmd);
             $this->deviceClose();
             return true;
-        } else if (is_array($port) && $this->_isBetween($value, array(0, 255))) {
-            $cmd = "@101," . count($port);
-            foreach ($port as $port_num) {
-                if ($this->_isBetween($port_num, $this->_arduino["PWM"])) {
-                    $cmd .= "," . $port_num . "," . $value;
-                }
-            }
-            $cmd .= ":";
-            $this->deviceOpen();
-            $this->sendMessage($cmd);
-            $this->deviceClose();
-            return true;
         } else
             throw new Exception("writeMultiplePWM: Port and value should be array, use writePWM instead");
     }
@@ -193,26 +179,8 @@ class ArduinoPi extends phpSerial
         if (is_array($port) && is_array($value) && count($port) == count($value)) {
             $cmd = "@101," . count($port);
             for ($i = 0; $i < count($port); $i++) {
-                if (is_string($port[$i])) {
-                    $port[$i] = $this->_transAnalogPin($port[$i]);
-                }
                 if ($this->_isBetween($port[$i], $this->_arduino["DIGITAL"]) && ($value[$i] == HIGH || $value[$i] == LOW)) {
                     $cmd .= "," . $port[$i] . "," . $value[$i];
-                }
-            }
-            $cmd .= ":";
-            $this->deviceOpen();
-            $this->sendMessage($cmd);
-            $this->deviceClose();
-            return true;
-        } else if (is_array($port) && ($value == HIGH || $value == LOW)) {
-            $cmd = "@101," . count($port);
-            foreach ($port as $port_num) {
-                if (is_string($port_num)) {
-                    $port_num = $this->_transAnalogPin($port_num);
-                }
-                if ($this->_isBetween($port_num, $this->_arduino["DIGITAL"])) {
-                    $cmd .= "," . $port_num . "," . $value;
                 }
             }
             $cmd .= ":";
@@ -234,9 +202,6 @@ class ArduinoPi extends phpSerial
      */
     public function readAnalog($port)
     {
-        if (is_string($port)) {
-            $port = $this->_transAnalogPin($port);
-        }
         if ($this->_isBetween($port, $this->_arduino["ANALOG"])) {
             $cmd = "@102," . $port . ":";
             $this->deviceOpen();
@@ -261,9 +226,6 @@ class ArduinoPi extends phpSerial
         if (is_array($port)) {
             $cmd = "@103," . count($port);
             for ($i = 0; $i < count($port); $i++) {
-                if (is_string($port[$i])) {
-                    $port[$i] = $this->_transAnalogPin($port[$i]);
-                }
                 if ($this->_isBetween($port[$i], $this->_arduino["ANALOG"])) {
                     $cmd .= "," . $port[$i];
                 }
@@ -431,18 +393,6 @@ class ArduinoPi extends phpSerial
         } else {
             return in_array($num, $range) ? true : false;
         }
-    }
-
-    /**
-     * Converts A0-A15 to the right port number
-     *
-     * @param String $string
-     * @return int
-     */
-    private function _transAnalogPin($string)
-    {
-        $val = explode("A", $string);
-        return $val[1];
     }
 
     /**
