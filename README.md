@@ -26,4 +26,4 @@ port 53 is my A0 port and so on.
 Check my blog for more information how to use the API: [blog](http://www.fritz-hut.com/all-projects/arduinopi/)       
 More information on how to connect the Raspberry Pi with the Arduino and how everything works can be found on my blog:
 [fritz-hut](http://fritz-hut.com).         
-Code is free for all to be used, copied, changed, edited and deleted. I only ask a simpel link to my blog if you use my code :)
+Code is free for all to be used, copied, changed, edited and deleted. I only ask a simple link to my blog if you use my code :)
